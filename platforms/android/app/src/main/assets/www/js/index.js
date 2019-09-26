@@ -17,30 +17,73 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
     initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+        var potText = document.getElementById('pot');
+        var delta = document.getElementById('delta');
+        var on = document.getElementById('on');
+        var off = document.getElementById('off');
+        var open = false;
+        var str = '';
+        var lastRead = new Date();
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        var errorCallback = function(message) {
+            alert('Error: ' + message);
+        };
+        // request permission first
+        serial.requestPermission(
+            // if user grants permission
+            function(successMessage) {
+                // open serial port
+                serial.open(
+                    {baudRate: 9600, dtr: true, rts: true},
+                    // if port is successfully opened
+                    function(successMessage) {
+                        open = true;
+                        // register the read callback
+                        serial.registerReadCallback(
+                            function success(data){
+                            var receivedMessage = "";
+                                // decode the received message
+                                var view = new Uint8Array(data);
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+                                 if (view.length >= 1) {
 
-        console.log('Received Event: ' + id);
+                                	                                for (var j = 0; j < view.length; j++) {
+
+                                	                                    var temp_str2 = String.fromCharCode(view[j]);
+                                	                                    var str_esc2 = escape(temp_str2);
+
+                                	                                    receivedMessage += str_esc2;
+
+                                	                                }
+
+                                	                            }
+                                	                            console.log(receivedMessage);
+
+                            },
+                            // error attaching the callback
+                            errorCallback
+                        );
+                    },
+                    // error opening the port
+                    errorCallback
+                );
+            },
+            // user does not grant permission
+            errorCallback
+        );
+
+        on.onclick = function() {
+            console.log('click');
+            if (open) serial.write('1');
+        };
+        off.onclick = function() {
+            if (open) serial.write('0');
+        }
     }
 };
 
-app.initialize();
+app.initialize()

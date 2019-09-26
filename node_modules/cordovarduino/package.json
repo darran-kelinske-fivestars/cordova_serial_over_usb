@@ -1,27 +1,24 @@
 {
-  "_from": "cordovarduino",
+  "_from": "git+https://github.com/xseignard/cordovarduino.git",
   "_id": "cordovarduino@0.0.10",
   "_inBundle": false,
-  "_integrity": "sha512-W3wcmuCiDJnUv73y91eEeP1zC+rqzmvgEzlnQ0I4wrX3fJ89VEV7RZzqk9tpcwz1HSOxE2OdIknevPUoaxmbCg==",
+  "_integrity": "",
   "_location": "/cordovarduino",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "cordovarduino",
-    "name": "cordovarduino",
-    "escapedName": "cordovarduino",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+    "type": "git",
+    "raw": "https://github.com/xseignard/cordovarduino.git",
+    "rawSpec": "https://github.com/xseignard/cordovarduino.git",
+    "saveSpec": "git+https://github.com/xseignard/cordovarduino.git",
+    "fetchSpec": "https://github.com/xseignard/cordovarduino.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordovarduino/-/cordovarduino-0.0.10.tgz",
-  "_shasum": "6cf7a8a3d458db218565141c59a0c756a79ca890",
-  "_spec": "cordovarduino",
+  "_resolved": "git+https://github.com/xseignard/cordovarduino.git#2bbdc45e339d676b7a3267f75ed9ac43d9fcfbef",
+  "_spec": "https://github.com/xseignard/cordovarduino.git",
   "_where": "/source/source/fivestars/cordova_serial_over_usb/cordova_serial_over_usb",
   "author": {
     "name": "Xavier Seignard",

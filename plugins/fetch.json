@@ -10,7 +10,7 @@
   "cordovarduino": {
     "source": {
       "type": "registry",
-      "id": "cordovarduino"
+      "id": "https://github.com/xseignard/cordovarduino.git"
     },
     "is_top_level": true,
     "variables": {}

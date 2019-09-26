@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.1.0",
-    "cordovarduino": "0.0.10"
+    "cordovarduino": "git+https://github.com/xseignard/cordovarduino.git"
   },
   "devDependencies": {
     "cordova-plugin-whitelist": "^1.3.4"

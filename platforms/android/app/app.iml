@@ -89,7 +89,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: __local_aars__:/source/source/fivestars/cordova_serial_over_usb/cordova_serial_over_usb/platforms/android/app/libs/usbseriallibrary.jar:unspecified@jar" level="project" />
     <orderEntry type="module" module-name="CordovaLib" />
-    <orderEntry type="module" module-name="usbSerialForAndroid" />
   </component>
 </module>
