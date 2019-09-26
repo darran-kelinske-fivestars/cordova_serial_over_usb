@@ -28,6 +28,7 @@ var app = {
         var open = false;
         var str = '';
         var lastRead = new Date();
+        var test = "";
 
         var errorCallback = function(message) {
             alert('Error: ' + message);
@@ -45,24 +46,28 @@ var app = {
                         // register the read callback
                         serial.registerReadCallback(
                             function success(data){
-                            var receivedMessage = "";
                                 // decode the received message
                                 var view = new Uint8Array(data);
-
-                                 if (view.length >= 1) {
-
-                                	                                for (var j = 0; j < view.length; j++) {
-
-                                	                                    var temp_str2 = String.fromCharCode(view[j]);
-                                	                                    var str_esc2 = escape(temp_str2);
-
-                                	                                    receivedMessage += str_esc2;
-
-                                	                                }
-
-                                	                            }
-                                	                            console.log(receivedMessage);
-
+                                if(view.length >= 1) {
+                                    for(var i=0; i < view.length; i++) {
+                                        // if we received a \n, the message is complete, display it
+                                        if(view[i] == 13) {
+                                            // check if the read rate correspond to the arduino serial print rate
+                                            var now = new Date();
+                                            delta.innerText = now - lastRead;
+                                            lastRead = now;
+                                            // display the message
+                                            console.log(str);
+                                            str = '';
+                                        }
+                                        // if not, concatenate with the begening of the message
+                                        else {
+                                            var temp_str = String.fromCharCode(view[i]);
+                                            var str_esc = escape(temp_str);
+                                            str += unescape(str_esc);
+                                        }
+                                    }
+                                }
                             },
                             // error attaching the callback
                             errorCallback
@@ -78,7 +83,8 @@ var app = {
 
         on.onclick = function() {
             console.log('click');
-            if (open) serial.write('1');
+            var text = { "x": 5, "y": 6 };
+            if (open) serial.write(JSON.stringify(text));
         };
         off.onclick = function() {
             if (open) serial.write('0');
