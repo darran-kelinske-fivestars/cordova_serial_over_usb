@@ -57,8 +57,10 @@ var app = {
                                             delta.innerText = now - lastRead;
                                             lastRead = now;
                                             // display the message
-                                            console.log(str);
+                                            var parseAttempt = str;
                                             str = '';
+                                            console.log(parseAttempt);
+                                            console.log(JSON.parse(parseAttempt).x);
                                         }
                                         // if not, concatenate with the begening of the message
                                         else {
@@ -83,7 +85,7 @@ var app = {
 
         on.onclick = function() {
             console.log('click');
-            var text = { "x": 5, "y": 6 };
+            var text = { "x": 7};
             if (open) serial.write(JSON.stringify(text));
         };
         off.onclick = function() {
