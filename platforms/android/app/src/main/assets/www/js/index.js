@@ -22,7 +22,6 @@ var app = {
     },
     onDeviceReady: function() {
         var potText = document.getElementById('pot');
-        var delta = document.getElementById('delta');
         var on = document.getElementById('on');
         var off = document.getElementById('off');
         var open = false;
@@ -48,27 +47,9 @@ var app = {
                             function success(data){
                                 // decode the received message
                                 var view = new Uint8Array(data);
-                                if(view.length >= 1) {
-                                    for(var i=0; i < view.length; i++) {
-                                        // if we received a \n, the message is complete, display it
-                                        if(view[i] == 13) {
-                                            // check if the read rate correspond to the arduino serial print rate
-                                            var now = new Date();
-                                            delta.innerText = now - lastRead;
-                                            lastRead = now;
-                                            // display the message
-                                            var parseAttempt = str;
-                                            str = '';
-                                            console.log(parseAttempt);
-                                            console.log(JSON.parse(parseAttempt).x);
-                                        }
-                                        // if not, concatenate with the begening of the message
-                                        else {
-                                            var temp_str = String.fromCharCode(view[i]);
-                                            var str_esc = escape(temp_str);
-                                            str += unescape(str_esc);
-                                        }
-                                    }
+                                if (view.length >= 1) {
+                                        console.log("data: " + String.fromCharCode.apply(null, view));
+                                        potText.textContent = String.fromCharCode.apply(null, view);
                                 }
                             },
                             // error attaching the callback
@@ -84,9 +65,7 @@ var app = {
         );
 
         on.onclick = function() {
-            console.log('click');
-            var text = { "x": 7};
-            if (open) serial.write(JSON.stringify(text));
+            if (open) serial.write('1');
         };
         off.onclick = function() {
             if (open) serial.write('0');

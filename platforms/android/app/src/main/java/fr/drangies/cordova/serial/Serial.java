@@ -84,6 +84,7 @@ public class Serial extends CordovaPlugin {
 				}
 				@Override
 				public void onNewData(final byte[] data) {
+					Log.e("darran", "this is our data: " + new String(data));
 					Serial.this.updateReceivedData(data);
 				}
 			};

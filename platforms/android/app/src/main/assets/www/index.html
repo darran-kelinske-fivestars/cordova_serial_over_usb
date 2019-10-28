@@ -27,7 +27,7 @@
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
+        -->c
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -37,11 +37,10 @@
     </head>
     <body>
     <div class="app">
-        <h1>Potentiometer value</h1>
-        <p>Value <span id="pot">...</span></p>
-        <p id="delta">...</p>
-        <button id="on">On</button>
-        <button id="off">Off</button>
+        <h1>Serial Data</h1>
+        <p>Value: <span id="pot">...</span></p>
+        <button id="on">1</button>
+        <button id="off">0</button>
     </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
